@@ -1,39 +1,39 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {logout} from '../store';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>BOILERMAKER</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )}
-    </nav>
-    <hr />
-  </div>
+const Navbar = ({handleClick, isLoggedIn, flexClass}) => (
+  <React.Fragment>
+    <Typography variant="title" color="inherit" className={flexClass}>Dharana</Typography>
+    {isLoggedIn ? (
+      <React.Fragment>
+        {/* The navbar will show these links after you log in */}
+        <Link to="/home">Home</Link>
+        <Button color="inherit"><a href="#" onClick={handleClick}>
+          Logout
+        </a></Button>
+      </React.Fragment>
+    ) : (
+      <React.Fragment>
+        {/* The navbar will show these links before you log in */}
+        <Button color="inherit"><Link to="/login">Login</Link></Button>
+        <Button color="inherit"><Link to="/signup">Sign Up</Link></Button>
+      </React.Fragment>
+    )}
+  </React.Fragment>
 )
 
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state, ownProps) => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    flexClass: ownProps.flexClass
   }
 }
 
