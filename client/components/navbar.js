@@ -12,16 +12,16 @@ const Navbar = ({handleClick, isLoggedIn, flexClass}) => (
     {isLoggedIn ? (
       <React.Fragment>
         {/* The navbar will show these links after you log in */}
-        <Link to="/home">Home</Link>
-        <Button color="inherit"><a href="#" onClick={handleClick}>
+        <Button color="inherit" href="/app">Home</Button>
+        <Button color="inherit" href="#" onClick={handleClick}>
           Logout
-        </a></Button>
+        </Button>
       </React.Fragment>
     ) : (
       <React.Fragment>
         {/* The navbar will show these links before you log in */}
-        <Button color="inherit"><Link to="/login">Login</Link></Button>
-        <Button color="inherit"><Link to="/signup">Sign Up</Link></Button>
+        <Button color="inherit" href="/login">Login</Button>
+        <Button color="inherit" href="/signup">Sign Up</Button>
       </React.Fragment>
     )}
   </React.Fragment>
