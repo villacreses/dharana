@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import UserHome from './user-home';
+import React from 'react'
+import PropTypes from 'prop-types'
+import {withStyles} from '@material-ui/core/styles'
+import Drawer from '@material-ui/core/Drawer'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+import UserHome from './user-home'
+import SidePanel from './sidePanel'
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 const styles = theme => ({
   root: {
@@ -24,7 +24,7 @@ const styles = theme => ({
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
-    'overflow-y': 'scroll',
+    'overflow-y': 'scroll'
   },
   content: {
     flexGrow: 1,
@@ -46,9 +46,7 @@ function Dashboard(props) {
           paper: classes.drawerPaper
         }}
       >
-        <List>I need a job </List>
-        <Divider />
-        <List>I need a damn job</List>
+        <SidePanel />
       </Drawer>
       <main className={classes.content}>
         <UserHome />

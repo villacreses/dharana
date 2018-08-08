@@ -1,4 +1,5 @@
-const User = require('./user')
+const User = require('./user');
+const Project = require('./project');
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -13,6 +14,11 @@ const User = require('./user')
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+
+User.hasMany(Project, {foreignKey: 'userId', sourceKey: 'id'});
+Project.belongsTo(User, {foreignKey: 'userId', targetKey: 'id'});
+
 module.exports = {
-  User
+  User,
+  Project
 }
