@@ -14,6 +14,7 @@ const drawerWidth = 240
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    'box-sizing': 'border-box',
     height: '100%',
     width: '100%',
     zIndex: 1,
@@ -24,7 +25,7 @@ const styles = theme => ({
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
-    'overflow-y': 'scroll'
+    'overflow-y': 'scroll',
   },
   content: {
     flexGrow: 1,
@@ -46,9 +47,11 @@ function Dashboard(props) {
           paper: classes.drawerPaper
         }}
       >
+        <div className={classes.toolbar} />
         <SidePanel />
       </Drawer>
       <main className={classes.content}>
+        <div className={classes.toolbar} />
         <UserHome />
       </main>
     </div>

@@ -13,7 +13,6 @@ const styles = theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1
   },
-  toolbar: theme.mixins.toolbar,
 });
 
 const NavbarContainer = props => {
@@ -25,7 +24,6 @@ const NavbarContainer = props => {
           <Navbar flexClass={classes.flex} />
         </Toolbar>
       </AppBar>
-      <div className={classes.toolbar} />
     </div>
   )
 }

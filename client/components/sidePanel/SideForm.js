@@ -6,19 +6,24 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 
-const SideForm = ({btnText, handleSubmit, cancel}) => {
+const SideForm = ({btnText, handleInput, handleSubmit, cancel}) => {
   return (
-    <React.Fragment>
+    <form onSubmit={handleSubmit}>
       <Table>
         <TableBody>
           <TableRow>
             <TableCell>
-              <Input id="project-input" placeholder="Name your project" />
+              <input
+                id="project-input"
+                name="title"
+                onChange={handleInput}
+                placeholder="Name your project"
+              />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>
-              <Input type="submit" value={btnText} onClick={handleSubmit} />
+              <input type="submit" value={btnText} />
               <a href="#" onClick={cancel}>
                 Cancel
               </a>
@@ -26,8 +31,8 @@ const SideForm = ({btnText, handleSubmit, cancel}) => {
           </TableRow>
         </TableBody>
       </Table>
-    </React.Fragment>
+    </form>
   )
-};
+}
 
-export default SideForm;
+export default SideForm
