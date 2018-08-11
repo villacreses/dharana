@@ -29,12 +29,15 @@ export const createNewProject = title => async dispatch => {
 }
 
 // REDUCER
-export default function (projects = [], action) {
+export default function (projects = {}, action) {
   switch (action.type) {
     case GET_PROJECTS:
       return action.projects;
     case POST_NEW_PROJECT:
-      return [...projects, action.project];
+      return {
+        ...projects, 
+        [action.project.id]: action.project,
+      };
     default:
       return projects;
   }

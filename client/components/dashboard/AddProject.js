@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {createNewProject} from '../../store';
-import SideForm from './SideForm';
 
 class AddProject extends React.Component {
   constructor(props) {
@@ -44,25 +43,40 @@ class AddProject extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {this.state.showForm ? (
-          <SideForm
-            btnText="Add Project"
-            cancel={this.toggleOff}
-            handleSubmit={this.handleSubmit}
-            handleInput={this.handleInput}
-          />
-        ) : (
-          <a href="#" onClick={this.toggleOn}>
-            Add Project
-          </a>
+        {this.state.showForm && (
+          <form onSubmit={this.handleSubmit}>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <input 
+                      id="project-input"
+                      name="title"
+                      onChange={this.handleInput}
+                      placeholder="Name your project"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="submit" value="Add Project" />
+                    <a onClick={this.toggleOff}>Cancel</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
         )}
+        <a onClick={this.toggleOn}>
+          Add Project
+        </a>
       </React.Fragment>
     )
   }
 }
 
-const mapDispatch = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   postProject: title => dispatch(createNewProject(title)),
 });
 
-export default connect(null, mapDispatch)(AddProject);
+export default connect(null, mapDispatchToProps)(AddProject);
