@@ -23,6 +23,7 @@ export const createNewProject = title => async dispatch => {
   try {
     const res = await axios.post('/api/projects', {title});
     dispatch(postNewProject(res.data))
+    history.push(`/d/project#${res.data.id}`)
   } catch (err) {
     console.error(err);
   }
