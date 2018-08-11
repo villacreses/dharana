@@ -21,7 +21,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        {isLoggedIn && <Route path="/app" component={Dashboard} /> }
+        {isLoggedIn && <Route path="/d/" component={Dashboard} /> }
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>

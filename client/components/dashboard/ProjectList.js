@@ -4,6 +4,7 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import AddProject from './AddProject'
 import {fetchProjects} from '../../store'
+import {Link} from 'react-router-dom'
 
 class ProjectList extends React.Component {
   componentDidMount() {
@@ -18,27 +19,25 @@ class ProjectList extends React.Component {
           <ListItem
             key={project.id}
             button
-            onClick={handleClick(project.id)}
           >
-            {project.title}
-          </ListItem>
-        ))}
-        <li>
-          <AddProject />
-        </li>
-      </List>
-    )
-  }
+            <Link to={`/d/project#${project.id}`}>{project.title}</Link>
+        </ListItem>
+      ))}
+      <li>
+        <AddProject />
+      </li>
+    </List>
+  )
+}
 }
 
 const mapStateToProps = state => ({
-  projects: state.projects
+projects: Object.values(state.projects),
 })
 
 // to do: replace console.log with a thunk for fetching lists associated with the selected project
 const mapDispatchToProps = dispatch => ({
-  loadProjects: () => dispatch(fetchProjects()),
-  handleClick: id => () => console.log(id) 
+loadProjects: () => dispatch(fetchProjects()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectList)

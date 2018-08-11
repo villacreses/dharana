@@ -5,8 +5,16 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const userId = req.user.id
-    const projects = await Project.findAll({where: {userId}})
-    res.json(projects)
+    const projects = await Project.findAll({
+      where: {userId},
+      attributes: {exclude: ['userId']}
+    })
+
+    let payload = {}
+    projects.forEach(proj => {
+      payload[proj.id] = proj
+    })
+    res.json(payload)
   } catch (err) {
     next(err)
   }
@@ -22,7 +30,7 @@ router.post('/', async (req, res, next) => {
       userId
     }).save()
 
-    res.status(201).json(project);
+    res.status(201).json(project)
   } catch (err) {
     next(err)
   }

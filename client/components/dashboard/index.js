@@ -6,8 +6,9 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import UserHome from './user-home'
-import SidePanel from './sidePanel'
+import Project from '../project'
+import ProjectList from './ProjectList'
+import {Route} from 'react-router-dom'
 
 const drawerWidth = 240
 
@@ -48,11 +49,11 @@ function Dashboard(props) {
         }}
       >
         <div className={classes.toolbar} />
-        <SidePanel />
+        <ProjectList />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <UserHome />
+        <Route path="/d/project" component={Project} />
       </main>
     </div>
   )
