@@ -36,24 +36,31 @@ a {
   margin-top: 5px;
 }
 
-.flex {
-  display: flex;
-}
 
 .flex-row {
+  display: flex;
   flex-direction: row;
 }
 
 .flex-col {
+  display: flex;
   flex-direction: column;
+}
+
+.fg-1 {
+  flex-grow: 1;
 }
 
 .drawer-item:hover {
   background-color: #f2f2f2;
 }
-.drawer-item span {
-  flex-grow: 1;
-  padding: 6.5px 0 6.5px 4px;
+
+.drawer-item .hide {
+  opacity: 0;
+}
+
+.drawer-item:hover .hide {
+  opacity: 1;
 }
 
 .li-adder-link {
@@ -76,3 +83,13 @@ a {
 .hide-scrollbar:hover {
   overflow-y: scroll
 }
+
+.board-header {
+  padding: 8px 0;
+}
+
+.more-menu {
+  padding: 0 5px;
+}
+
+

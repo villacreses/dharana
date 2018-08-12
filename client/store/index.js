@@ -5,8 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 
 import user from './user'
 import projects from './project'
+import selected from './selected'
 
-const reducer = combineReducers({user, projects})
+const reducer = combineReducers({user, projects, selected})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -15,3 +16,4 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 export * from './project'
+export * from './selected'
