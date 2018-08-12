@@ -25,8 +25,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: 'relative',
-    width: drawerWidth,
-    'overflow-y': 'scroll',
+    width: drawerWidth
   },
   content: {
     flexGrow: 1,
@@ -49,7 +48,10 @@ function Dashboard(props) {
         }}
       >
         <div className={classes.toolbar} />
-        <ProjectList />
+        <ProjectList
+          path={props.location.pathname}
+          hash={props.location.hash}
+        />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
