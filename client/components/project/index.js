@@ -10,14 +10,11 @@ export default class ProjectWrapper extends React.Component {
     }
   }
 
-  static getDerivedStateFromProps (nextProps, prevState) {
-    const newProjectId = nextProps.location.hash.slice(1);
-    const {projectId} = prevState;
-
-    return (newProjectId !== projectId) ? {projectId: newProjectId} : null;
-  }
-
   render () {
     return <ProjectBoard id={this.state.projectId} />
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  openProject: id => dispatch(selectProject(id))
+})

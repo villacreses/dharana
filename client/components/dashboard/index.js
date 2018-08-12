@@ -9,6 +9,8 @@ import Divider from '@material-ui/core/Divider'
 import Project from '../project'
 import ProjectList from './ProjectList'
 import {Route} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {selectProject} from '../../store'
 
 const drawerWidth = 240
 
@@ -25,42 +27,59 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: 'relative',
-    width: drawerWidth,
-    'overflow-y': 'scroll',
+    width: drawerWidth
   },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
+    paddingTop: 0,
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
+    paddingBottom: theme.spacing.unit * 3,
     minWidth: 0 // So the Typography noWrap works
   },
   toolbar: theme.mixins.toolbar
 })
 
-function Dashboard(props) {
-  const {classes} = props
+class Dashboard extends React.Component {
+  componentDidMount () {
+    const id = this.props.location.hash.slice(1);
+    this.props.openProject(id);
+  }
+  render () {
+    const {classes} = this.props
 
-  return (
-    <div className={classes.root}>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <div className={classes.toolbar} />
-        <ProjectList />
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Route path="/d/project" component={Project} />
-      </main>
-    </div>
-  )
+    return (
+      <div className={classes.root}>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
+        >
+          <div className={classes.toolbar} />
+          <ProjectList
+            path={this.props.location.pathname}
+            hash={this.props.location.hash}
+          />
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Route path="/d/project" component={Project} />
+        </main>
+      </div>
+    )
+  }
 }
 
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Dashboard)
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  ...ownProps,
+  openProject: id => dispatch(selectProject(id)),
+})
+
+const StyledDashboard = withStyles(styles)(Dashboard);
+export default connect(null, mapDispatchToProps)(StyledDashboard);

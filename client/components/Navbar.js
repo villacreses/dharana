@@ -10,7 +10,10 @@ import {logout} from '../store'
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+  },
+  flex: {
+    flexGrow: 1,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
@@ -26,17 +29,17 @@ const Navbar = props => {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Dharana
           </Typography>
-          {isLoggedIn ? (
-            <React.Fragment>
-              <Button color="inherit" href="/app">Home</Button>
-              <Button color="inherit" onClick={handleLogout}>Logout</Button>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <Button color="inherit" href="/login">Login</Button>
-              <Button color="inherit" href="/signup">Sign Up</Button>
-            </React.Fragment>
-          )}
+            {isLoggedIn ? (
+              <React.Fragment>
+                <Button color="inherit" href="/app">Home</Button>
+                <Button color="inherit" onClick={handleLogout}>Logout</Button>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Button color="inherit" href="/login">Login</Button>
+                <Button color="inherit" href="/signup">Sign Up</Button>
+              </React.Fragment>
+            )}
         </Toolbar>
       </AppBar>
     </div>

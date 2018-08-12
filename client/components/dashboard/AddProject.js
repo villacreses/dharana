@@ -17,11 +17,13 @@ class AddProject extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  toggleOn() {
+  toggleOn(evt) {
+    (evt && evt.preventDefault());
     this.setState({showForm: true, title: ''})
   }
 
-  toggleOff() {
+  toggleOff(evt) {
+    (evt && evt.preventDefault());
     this.setState({showForm: false})
   }
 
@@ -44,32 +46,36 @@ class AddProject extends React.Component {
     return (
       <React.Fragment>
         {this.state.showForm && (
-          <form onSubmit={this.handleSubmit}>
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <input 
-                      id="project-input"
-                      name="title"
-                      onChange={this.handleInput}
-                      placeholder="Name your project"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="submit" value="Add Project" />
-                    <a onClick={this.toggleOff}>Cancel</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </form>
+          <li className="li-manager">
+            <form onSubmit={this.handleSubmit}>
+              <table className="span-width">
+                <tbody>
+                  <tr>
+                    <td>
+                      <input 
+                        className="li-manager-input"
+                        name="title"
+                        onChange={this.handleInput}
+                        placeholder="Name your project"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="submit" value="Add Project" />
+                      <a href="" className="cancel" onClick={this.toggleOff}>Cancel</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </li>
         )}
-        <a onClick={this.toggleOn}>
-          Add Project
-        </a>
+        <li className="li-adder-link">
+          <a href="" onClick={this.toggleOn}>
+            Add Project
+          </a>
+        </li>
       </React.Fragment>
     )
   }

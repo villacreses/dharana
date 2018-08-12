@@ -1,5 +1,6 @@
 import axios from 'axios';
 import history from '../history';
+import {selectProject} from './selected'
 
 // Action types
 const GET_PROJECTS = 'GET_PROJECTS';
@@ -23,6 +24,8 @@ export const createNewProject = title => async dispatch => {
   try {
     const res = await axios.post('/api/projects', {title});
     dispatch(postNewProject(res.data))
+    history.push(`/d/project#${res.data.id}`)
+    dispatch(selectProject(res.data.id))
   } catch (err) {
     console.error(err);
   }

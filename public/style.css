@@ -14,3 +14,82 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.span-width {
+  width: 100%;
+}
+
+a {
+  color: #1baa11;
+}
+.cancel {
+  padding: 2px 5px;
+  color: #555;
+}
+
+.button {
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.fg-1 {
+  flex-grow: 1;
+}
+
+.drawer-item:hover {
+  background-color: #f2f2f2;
+}
+
+.drawer-item .hide {
+  opacity: 0;
+}
+
+.drawer-item:hover .hide {
+  opacity: 1;
+}
+
+.li-adder-link {
+  padding: 10px 0 5px 12px;
+}
+
+.li-manager {
+  padding: 8px 0 !important;
+  margin-bottom: 6px;
+}
+
+.li-manager-input {
+  width: 90%
+}
+
+.hide-scrollbar {
+  overflow-y: hidden
+}
+
+.hide-scrollbar:hover {
+  overflow-y: scroll
+}
+
+.board-header {
+  padding: 8px 0;
+}
+
+.more-menu {
+  padding: 0 5px;
+}
+
+
