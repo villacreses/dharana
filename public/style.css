@@ -23,9 +23,11 @@ form div {
   width: 100%;
 }
 
-a {
+.green {
   color: #1baa11;
+  user-select: none;
 }
+
 .cancel {
   padding: 2px 5px;
   color: #555;
@@ -35,7 +37,6 @@ a {
   margin-right: 5px;
   margin-top: 5px;
 }
-
 
 .flex-row {
   display: flex;
@@ -49,6 +50,10 @@ a {
 
 .fg-1 {
   flex-grow: 1;
+}
+
+.unselectable {
+  user-select: none;
 }
 
 .drawer-item:hover {
@@ -91,5 +96,3 @@ a {
 .more-menu {
   padding: 0 5px;
 }
-
-
