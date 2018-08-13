@@ -11,10 +11,11 @@ import {withStyles} from '@material-ui/core/styles'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import Divider from '@material-ui/core/Divider'
-import AddProject from './AddProject'
 import {selectProject} from '../../store'
 import history from '../../history'
 import MenuWrapper from '../MenuWrapper'
+import AddProject from './AddProject'
+import {ProjectAdder} from '../adder'
 
 const styles = theme => ({
   root: {
@@ -92,7 +93,7 @@ class ProjectList extends React.Component {
                 <MenuWrapper />
               </ListItem>
             ))}
-            <AddProject />
+            <ProjectAdder />
           </List>
           <Divider />
         </Collapse>

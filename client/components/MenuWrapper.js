@@ -5,15 +5,22 @@ import MenuItem from '@material-ui/core/MenuItem'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 
 class SimpleMenu extends React.Component {
-  state = {
-    anchorEl: null
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      anchorEl: null,
+    }
+
+    this.handleClick = this.handleClick.bind(this)
+    this.handleClose = this.handleClose.bind(this)
   }
 
-  handleClick = event => {
+  handleClick (event) {
     this.setState({anchorEl: event.currentTarget})
   }
 
-  handleClose = () => {
+  handleClose () {
     this.setState({anchorEl: null})
   }
 
@@ -36,9 +43,8 @@ class SimpleMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-          <MenuItem onClick={this.handleClose}>My account</MenuItem>
-          <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+          <MenuItem onClick={this.handleClose}>Edit Title</MenuItem>
+          <MenuItem onClick={this.handleClose}>Delete Project</MenuItem>
         </Menu>
       </div>
     )

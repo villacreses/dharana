@@ -63,7 +63,7 @@ class AddProject extends React.Component {
                   <tr>
                     <td>
                       <input type="submit" value="Add Project" />
-                      <a href="" className="cancel" onClick={this.toggleOff}>Cancel</a>
+                      <a className="cancel" onClick={this.toggleOff}>Cancel</a>
                     </td>
                   </tr>
                 </tbody>
@@ -72,7 +72,7 @@ class AddProject extends React.Component {
           </li>
         )}
         <li className="li-adder-link">
-          <a href="" onClick={this.toggleOn}>
+          <a href="" className="green" onClick={this.toggleOn}>
             Add Project
           </a>
         </li>
