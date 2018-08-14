@@ -5,11 +5,9 @@ import {createNewProject} from '../../store'
 
 const ProjectAdder = props => {
   return (
-    <li className="li-adder-link">
-      <a href="" className="green" onClick={props.handleClick}>
-        Add Project
-      </a>
-    </li>
+    <a href="" className="green" onClick={props.handleClick}>
+      Add Project
+    </a>
   )
 }
 

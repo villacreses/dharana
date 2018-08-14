@@ -1,22 +1,28 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Typography from '@material-ui/core/Typography'
+import List from './List'
 
 const ProjectBoard = props => {
   const {project} = props
+  const arr = [1, 2, 3, 4,]
 
   return (
-    <React.Fragment>
+    <div className="d-flex flex-column full-width full-height">
       {!project ? (
         <h1>Project not found</h1>
       ) : (
-        <div className="board-header flex-row">
-          <Typography variant="headline" className="fg-1">
-            {project.title}
-          </Typography>
-        </div>
+        <React.Fragment>
+          <div id="board-header" className="p-2 mb-3">
+            <h3>{project.title}</h3>
+          </div>
+          <div id="list-container" className="d-flex flex-row flex-1 pb-3">
+            <List />
+            <List />
+            <List />
+          </div>
+        </React.Fragment>
       )}
-    </React.Fragment>
+    </div>
   )
 }
 
