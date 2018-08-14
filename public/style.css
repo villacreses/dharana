@@ -23,7 +23,7 @@ ul {
 }
 
 li.project:hover {
-  background-color: #e5e5e5;
+  background-color: #f5f5f5;
 }
 
 #top-bar {
@@ -72,6 +72,10 @@ li.project:hover {
 
 .bold {
   font-weight: bold;
+}
+
+.paper {
+  background-color: #fcfbf4;
 }
 
 .task-list-col {

@@ -15,8 +15,8 @@ class Dashboard extends React.Component {
   render () {
 
     return (
-      <div className="container-fluid d-flex flex-1 pl-0">
-          <nav className="nav drawer shadow pt-2 px-3 mr-3">
+      <div className="container-fluid d-flex flex-1 pl-0 hide-overflow">
+          <nav className="nav drawer shadow pt-2 px-3">
             <ProjectList
               path={this.props.location.pathname}
               hash={this.props.location.hash}

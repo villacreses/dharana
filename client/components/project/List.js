@@ -1,15 +1,16 @@
 import React from 'react'
+import Task from '../task'
 
 const List = () => {
   return (
     <div className="task-list-col">
-      <div className="border rounded task-list shadow mx-3 full-height">
+      <div className="border rounded task-list shadow mx-3 full-height paper">
         <h4 className="border-bottom px-3 py-2">Title</h4>
-        <ul className="list-group list-group-flush px-4">
-          <li className="list-group-item">Task 1</li>
-          <li className="list-group-item">Task 2</li>
-          <li className="list-group-item">Task 2</li>
-        </ul>
+          <ul className="mx-4">
+            <li><Task /></li>
+            <li><Task /></li>
+            <li><Task /></li>
+          </ul>
       </div>
     </div>
   )

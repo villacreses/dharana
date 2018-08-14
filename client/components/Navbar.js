@@ -7,7 +7,7 @@ import {logout} from '../store'
 const Navbar = props => {
   const {isLoggedIn, handleLogout} = props
   return (
-    <nav id="top-bar" className="navbar shadow-sm">
+    <nav id="top-bar" className="navbar shadow-sm py-0">
       <div className="navbar-brand">
         Dharana
       </div>
