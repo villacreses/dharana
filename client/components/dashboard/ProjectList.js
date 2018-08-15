@@ -1,41 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import Collapse from '@material-ui/core/Collapse'
-import Typography from '@material-ui/core/Typography'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import {withStyles} from '@material-ui/core/styles'
-import ExpandLess from '@material-ui/icons/ExpandLess'
-import ExpandMore from '@material-ui/icons/ExpandMore'
-import Divider from '@material-ui/core/Divider'
 import {selectProject} from '../../store'
 import history from '../../history'
-import MenuWrapper from '../MenuWrapper'
-import AddProject from './AddProject'
 import {ProjectAdder} from '../adder'
-
-const styles = theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'row',
-    paddingTop: '4.5px',
-    paddingRight: 0,
-    paddingBottom: '4.5px',
-    paddingLeft: '16px'
-  },
-  padding: {
-    paddingTop: 0,
-    paddingLeft: '12px'
-  },
-  dense: {
-    paddingLeft: '5px',
-    fontSize: '1em',
-    fontWeight: 'bold'
-  }
-})
 
 class ProjectList extends React.Component {
   constructor(props) {
@@ -68,36 +36,29 @@ class ProjectList extends React.Component {
     const boldText = id => (id == selectedProjectId ? 'bold' : '')
 
     return (
-      <List className={classes.padding}>
-        <ListItem disableGutters dense onClick={this.toggleCollapse}>
-          {this.state.collapse ? <ExpandMore /> : <ExpandLess />}
-          <ListItemText disableTypography className={classes.dense}>
-            Projects
-          </ListItemText>
-        </ListItem>
-        <Divider />
-        <Collapse in={this.state.collapse} timeout="auto" unmountOnExit>
-          <List className={classes.padding}>
-            {projects.map(project => (
-              <ListItem
-                key={project.id}
-                className={`drawer-item ${classes.root}`}
-              >
-                <ListItemText
+      <React.Fragment>
+        <ul className="full-width">
+          <li className="full-width bold border-bottom pb-2 h5">Projects</li>
+          <li>
+            <ul className="pl-3">
+              {projects.map(project => (
+                <li
+                  key={project.id}
+                  className="project py-2"
                   onClick={this.openProject(project.id)}
                 >
-                  <div className={boldText(project.id)}>
+                  <span className={`${boldText(project.id)}`}>
                     {project.title}
-                  </div>
-                </ListItemText>
-                <MenuWrapper />
-              </ListItem>
-            ))}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </li>
+          <li>
             <ProjectAdder />
-          </List>
-          <Divider />
-        </Collapse>
-      </List>
+          </li>
+        </ul>
+      </React.Fragment>
     )
   }
 }
@@ -105,13 +66,11 @@ class ProjectList extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
   projects: Object.values(state.projects),
-  selectedProjectId: state.selected.projectId,
+  selectedProjectId: state.selected.projectId
 })
 
 const mapDispatchToProps = dispatch => ({
-  openProject: id => dispatch(selectProject(id)),
+  openProject: id => dispatch(selectProject(id))
 })
 
-const StyledProjectList = withStyles(styles)(ProjectList)
-
-export default connect(mapStateToProps, mapDispatchToProps)(StyledProjectList)
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectList)

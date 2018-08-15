@@ -1,48 +1,30 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {withStyles} from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
 import {connect} from 'react-redux'
 import {logout} from '../store'
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  flex: {
-    flexGrow: 1,
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1
-  }
-})
-
 const Navbar = props => {
-  const {classes, isLoggedIn, handleLogout} = props
+  const {isLoggedIn, handleLogout} = props
   return (
-    <div className={classes.root}>
-      <AppBar position="fixed" color="default" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="title" color="inherit" className={classes.flex}>
-            Dharana
-          </Typography>
-            {isLoggedIn ? (
-              <React.Fragment>
-                <Button color="inherit" href="/app">Home</Button>
-                <Button color="inherit" onClick={handleLogout}>Logout</Button>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                <Button color="inherit" href="/login">Login</Button>
-                <Button color="inherit" href="/signup">Sign Up</Button>
-              </React.Fragment>
-            )}
-        </Toolbar>
-      </AppBar>
-    </div>
+    <nav id="top-bar" className="navbar shadow-sm py-0">
+      <div className="navbar-brand">
+        Dharana
+      </div>
+      <div className="navbar-nav">
+        {isLoggedIn ? (
+          <React.Fragment>
+            <Link className="navbar-text text-secondary" to="/d/project">Home</Link>
+            <a href="" className="navbar-text text-secondary" onClick={handleLogout}>Logout</a>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Link className="navbar-text text-secondary" to="/login">Login</Link>
+            <Link className="navbar-text text-secondary" to="/signup">Sign Up</Link>
+          </React.Fragment>
+        )}
+      </div>
+    </nav>
   )
 }
 
@@ -55,11 +37,9 @@ const mapDispatchToProps = dispatch => ({
   handleLogout: () => dispatch(logout()),
 })
 
-const StyledNavbar = withStyles(styles)(Navbar);
-export default connect(mapStateToProps, mapDispatchToProps)(StyledNavbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
 
 Navbar.propTypes = {
-  classes: PropTypes.object.isRequired,
   handleLogout: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
 }
