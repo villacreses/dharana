@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Task, {AddTask} from './task'
+import Task, {AddTask} from './Task'
 
 const List = ({tasks}) => {
   return (

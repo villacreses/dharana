@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {selectProject} from '../../store'
 import history from '../../history'
-import {ProjectAdder} from '../adder'
 
 class ProjectList extends React.Component {
   constructor(props) {
@@ -53,9 +52,6 @@ class ProjectList extends React.Component {
                 </li>
               ))}
             </ul>
-          </li>
-          <li>
-            <ProjectAdder />
           </li>
         </ul>
       </React.Fragment>
