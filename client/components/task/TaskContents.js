@@ -1,4 +1,6 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {toggleTaskThunk} from '../../store'
 
 const TaskContents = props => {
   const checkedCSS = props.checked ? 'checked' : 'text-muted'
@@ -45,4 +47,13 @@ const TaskContents = props => {
   )
 }
 
-export default TaskContents
+const mapStateToProps = (state, ownProps) => ({
+  ...ownProps,
+  ...state.tasks[ownProps.id],
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  toggleCheck: () => dispatch(toggleTaskThunk(ownProps.id))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskContents)
