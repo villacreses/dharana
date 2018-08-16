@@ -7,8 +7,7 @@ class TaskForm extends React.Component {
     super(props)
 
     this.state = {
-      title: this.props.title,
-      date: this.props.date
+      title: this.props.title
     }
 
     this.handleInput = this.handleInput.bind(this)
@@ -23,10 +22,7 @@ class TaskForm extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault()
     const {submitUpdates, closeForm} = this.props
-    if (
-      this.state.title !== this.props.title ||
-      this.state.date !== this.props.date
-    ) {
+    if (this.state.title !== this.props.title) {
       submitUpdates(this.state)
     }
 
@@ -45,12 +41,6 @@ class TaskForm extends React.Component {
             className="flex-1 no-outline"
             placeholder="Enter task here"
           />
-          <input
-            type="date"
-            name="date"
-            onChange={this.handleInput}
-            className="no-outline border-left"
-          />
         </div>
         <div className="d-flex flex-row pl-1 pt-1">
           <input
@@ -68,8 +58,8 @@ class TaskForm extends React.Component {
 }
 
 const mapStateEdit = (state, ownProps) => {
-  const {title, date} = state.tasks[ownProps.id]
-  return {title, date}
+  const {title} = state.tasks[ownProps.id]
+  return {title}
 }
 
 const mapDispatchEdit = (dispatch, ownProps) => ({
@@ -79,8 +69,7 @@ const mapDispatchEdit = (dispatch, ownProps) => ({
 
 const mapDispatchAdd = dispatch => ({
   title: '',
-  date: null,
-  submitUpdates: payload => dispatch(createNewTaskThunk(payload))
+  submitUpdates: updates => dispatch(createNewTaskThunk(updates))
 })
 
 export const EditTaskForm = connect(mapStateEdit, mapDispatchEdit)(TaskForm)

@@ -32,7 +32,6 @@ const TaskContents = props => {
           <td className="d-flex flex-1 text-cursor">
             <CrossOut>
               <span className="flex-1">{props.title}</span>
-              {props.due && <span className="pl-2">{props.due}</span>}
             </CrossOut>
           </td>
           <td className="pl-1">
