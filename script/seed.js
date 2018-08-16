@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Project} = require('../server/db/models')
+const {User, Project, Task} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -19,6 +19,14 @@ async function seed() {
     Project.create({title: 'a\'s First Project', userId: 3}),
     Project.create({title: 'a\'s Second Project', userId: 3})
   ])
+  console.log(`seeded ${projects.length} projects`)
+
+  const tasks = await Promise.all([
+    Task.create({title: 'Task one', userId: 3, due: new Date('September 11, 2001 9:11:00'), projectId: 1}),
+    Task.create({title: 'Anotha task', userId: 3, projectId: 1}),
+    Task.create({title: 'Task three', userId: 3, projectId: 1})
+  ])
+  console.log(`seeded ${tasks.length} tasks`)
   console.log(`seeded successfully`)
 }
 

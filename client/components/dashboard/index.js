@@ -4,11 +4,13 @@ import Project from '../project'
 import ProjectList from './ProjectList'
 import {Route} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {selectProject} from '../../store'
+import {fetchProjects, getTasksThunk, selectProject} from '../../store'
+import List from '../List'
 
 class Dashboard extends React.Component {
   componentDidMount () {
     const id = this.props.location.hash.slice(1);
+    this.props.initialLoad();
     this.props.openProject(id);
   }
 
@@ -22,8 +24,9 @@ class Dashboard extends React.Component {
               hash={this.props.location.hash}
             />
           </nav>
-          <main className="pl-2 pt-3 flex-1 hide-overflow">
-            <Route path="/d/project" component={Project} />
+          <main className="flex-1 hide-overflow pl-2">
+            <List />
+            {/*<Route path="/d/project" component={Project} />*/}
           </main>
       </div>
     )
@@ -32,6 +35,10 @@ class Dashboard extends React.Component {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   ...ownProps,
+  initialLoad: async () => {
+    await dispatch(fetchProjects())
+    await dispatch(getTasksThunk())
+  },
   openProject: id => dispatch(selectProject(id)),
 })
 

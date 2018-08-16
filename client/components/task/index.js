@@ -1,11 +1,7 @@
-import React from 'react'
+import TaskContents from './TaskContents'
+import AddTaskLink from './AddTaskLink'
+import {AddTaskForm, EditTaskForm} from './TaskForm'
+import FormSwapper from '../FormSwapper'
 
-export default class Task extends React.Component {
-  render () {
-    return (
-      <div className="paper py-2 border-bottom">
-        Task Title
-      </div>
-    )
-  }
-}
+export const AddTask = FormSwapper(AddTaskLink, AddTaskForm)
+export default FormSwapper(TaskContents, EditTaskForm)
