@@ -3,10 +3,14 @@ import axios from 'axios'
 // ACTION TYPES
 const GET_TASKS = 'GET_TASKS'
 const TOGGLE_TASK = 'TOGGLE_TASK'
+const CREATE_NEW_TASK = 'CREATE_NEW_TASK'
+const UPDATE_TASK = 'UPDATE_TASK'
 
 // ACTION CREATORS
 export const getTasks = tasks => ({type: GET_TASKS, tasks})
 export const toggleTask = id => ({type: TOGGLE_TASK, id})
+export const createNewTask = task => ({type: CREATE_NEW_TASK, task})
+export const updateTask = task => ({type: UPDATE_TASK, task})
 
 // THUNK CREATORS
 export const getTasksThunk = () => async dispatch => {
@@ -27,6 +31,23 @@ export const toggleTaskThunk = id => async dispatch => {
   }
 }
 
+export const createNewTaskThunk = taskInfo => async dispatch => {
+  try {
+    const res = await axios.post('/api/tasks', taskInfo)
+    dispatch(createNewTask(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const updateTaskThunk = (taskId, updates) => async dispatch => {
+  try {
+    const res = await axios.put(`/api/tasks/${taskId}`, updates)
+    dispatch(updateTask(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 export default function (tasks = {}, action) {
   switch (action.type) {
@@ -39,6 +60,12 @@ export default function (tasks = {}, action) {
           ...tasks[action.id],
           checked: !tasks[action.id].checked
         }
+      }
+    case CREATE_NEW_TASK:
+    case UPDATE_TASK:
+      return {
+        ...tasks,
+        [action.task.id]: action.task
       }
     default:
       return tasks

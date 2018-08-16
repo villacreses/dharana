@@ -23,7 +23,8 @@ async function seed() {
 
   const tasks = await Promise.all([
     Task.create({title: 'Task one', userId: 3, due: new Date('September 11, 2001 9:11:00'), projectId: 1}),
-    Task.create({title: 'Anotha task', userId: 3, projectId: 1})
+    Task.create({title: 'Anotha task', userId: 3, projectId: 1}),
+    Task.create({title: 'Task three', userId: 3, projectId: 1})
   ])
   console.log(`seeded ${tasks.length} tasks`)
   console.log(`seeded successfully`)

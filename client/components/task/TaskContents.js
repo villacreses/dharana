@@ -13,13 +13,13 @@ const TaskContents = props => {
     )
 
   return (
-    <table className="d-flex flex-row border-bottom py-2 task-item">
+    <table className="d-flex flex-row py-2 task-item">
       <tbody className="flex-1">
-        <tr className="d-flex flex-row pl-1 pr-2">
+        <tr className="d-flex flex-row">
           <td>
-            <i class="fas fa-grip-vertical btn btn-sm pr-1 text-secondary" />
+            <i className="fas fa-grip-vertical btn pr-1 text-secondary" />
           </td>
-          <td className="pr-2">
+          <td className="pr-2 pt-1">
             <div
               className="checkbox rounded-circle border border-secondary"
               onClick={props.toggleCheck}
@@ -33,8 +33,11 @@ const TaskContents = props => {
               {props.due && <span className="pl-2">{props.due}</span>}
             </CrossOut>
           </td>
-          <td className="pl-2">
+          <td className="pl-1">
             <i className="fas fa-align-left btn btn-sm btn-outline-secondary" />
+          </td>
+          <td>
+            <i className="fas fa-ellipsis-v btn btn-sm text-secondary"></i>
           </td>
         </tr>
       </tbody>

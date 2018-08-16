@@ -6,6 +6,7 @@ router.use('/projects', require('./projects'))
 router.use('/tasks', require('./tasks'))
 
 router.use((req, res, next) => {
+  console.log(req)
   const error = new Error('Not Found')
   error.status = 404
   next(error)

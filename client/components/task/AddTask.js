@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import FormSwapper from '../FormSwapper'
 import TaskForm from './TaskForm'
+import {createNewTaskThunk} from '../../store'
 
 const AddTaskLink = ({openForm}) => {
   return (
@@ -15,7 +16,8 @@ const AddTaskLink = ({openForm}) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  ...ownProps
+  ...ownProps,
+  handleSubmit: payload => dispatch(createNewTaskThunk(payload))
 })
 
 const WrappedAddTaskLink = FormSwapper(AddTaskLink, TaskForm)
