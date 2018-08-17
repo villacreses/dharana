@@ -41,3 +41,5 @@ export default function(Main, Form) {
     }
   }
 }
+
+export {default as StandardForm} from './StandardForm'

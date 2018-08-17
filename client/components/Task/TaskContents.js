@@ -38,7 +38,7 @@ const TaskContents = props => {
             <i className="fas fa-align-left btn btn-sm btn-outline-secondary" />
           </td>
           <td>
-            <i className="fas fa-ellipsis-v btn btn-sm text-secondary"></i>
+            <i className="fas fa-ellipsis-v btn btn-sm text-secondary" />
           </td>
         </tr>
       </tbody>
@@ -48,7 +48,7 @@ const TaskContents = props => {
 
 const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
-  ...state.tasks[ownProps.id],
+  ...state.tasks[ownProps.id]
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -13,7 +13,7 @@ export default function (state = defaultState, action) {
     case SELECT_PROJECT:
       return {
         ...state,
-        projectId: action.projectId,
+        projectId: Number(action.projectId),
       }
     default: 
       return state;
