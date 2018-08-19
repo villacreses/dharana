@@ -15,7 +15,7 @@ const TaskContents = props => {
     )
 
   return (
-    <table className="d-flex flex-row py-2 task-item">
+    <table className="d-flex flex-row py-2 task-item border-bottom">
       <tbody className="flex-1">
         <tr className="d-flex flex-row">
           <td>

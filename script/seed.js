@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Project, Task} = require('../server/db/models')
+const {User, Project, List, Task} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -21,10 +21,21 @@ async function seed() {
   ])
   console.log(`seeded ${projects.length} projects`)
 
+  const lists = await Promise.all([
+    List.create({title: 'Ze first list', userId: 3, projectId: 1}),
+    List.create({title: 'Ze second list', userId: 3, projectId: 1}),
+    List.create({title: 'list numbah uno', userId: 3, projectId: 2}),
+  ])
+  console.log(`seeded ${lists.length} lists`)
+
   const tasks = await Promise.all([
-    Task.create({title: 'Task one', userId: 3, due: new Date('September 11, 2001 9:11:00'), projectId: 1}),
-    Task.create({title: 'Anotha task', userId: 3, projectId: 1}),
-    Task.create({title: 'Task three', userId: 3, projectId: 1})
+    Task.create({title: 'Task one', userId: 3, listId: 1}),
+    Task.create({title: 'Task two', userId: 3, listId: 1}),
+    Task.create({title: 'Task three', userId: 3, listId: 1}),
+    Task.create({title: 'Anotha task', userId: 3, listId: 2}),
+    Task.create({title: 'And anotha task', userId: 3, listId: 2}),
+    Task.create({title: 'what', userId: 3, listId: 3}),
+    Task.create({title: 'up', userId: 3, listId: 3}),
   ])
   console.log(`seeded ${tasks.length} tasks`)
   console.log(`seeded successfully`)

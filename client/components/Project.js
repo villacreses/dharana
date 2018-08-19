@@ -9,6 +9,7 @@ class Project extends React.Component {
   }
 
   render() {
+    const {lists} = this.props
     return (
       <div className="d-flex flex-column full-width full-height">
         {!this.props.id ? (
@@ -18,8 +19,8 @@ class Project extends React.Component {
             <div>
               <h3>{this.props.title}</h3>
             </div>
-            <div className="d-flex flex-row flex-1 pb-3">
-              <List />
+            <div className="d-flex flex-row flex-1 ox-auto">
+              {lists && lists.map(list => <List key={list.id} id={list.id} />)}
             </div>
           </React.Fragment>
         )}

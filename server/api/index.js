@@ -3,7 +3,9 @@ module.exports = router
 
 router.use('/users', require('./users'))
 router.use('/projects', require('./projects'))
+router.use('/lists', require('./lists'))
 router.use('/tasks', require('./tasks'))
+
 
 router.use((req, res, next) => {
   console.log(req)

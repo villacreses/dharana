@@ -40,16 +40,18 @@ export default class StandardForm extends React.Component {
             placeholder="Enter title here"
           />
         </div>
-        <div className="d-flex flex-row pl-1 pt-1">
-          <input
-            type="submit"
-            className="btn btn-primary btn-sm"
-            value="Save"
-          />
-          <a href="" className="btn btn-sm text-secondary" onClick={closeForm}>
-            Cancel
-          </a>
-        </div>
+        {!this.props.hideButtons && (
+          <div className="d-flex flex-row pl-1 pt-1">
+            <input
+              type="submit"
+              className="btn btn-primary btn-sm"
+              value="Save"
+            />
+            <a href="" className="btn btn-sm text-secondary" onClick={closeForm}>
+              Cancel
+            </a>
+          </div>
+        )}
       </form>
     )
   }

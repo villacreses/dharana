@@ -1,6 +1,7 @@
 const User = require('./user')
 const Project = require('./project')
 const Task = require('./task')
+const List = require('./list')
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -18,14 +19,24 @@ const Task = require('./task')
 User.hasMany(Project, {foreignKey: 'userId', sourceKey: 'id'})
 Project.belongsTo(User, {foreignKey: 'userId', targetKey: 'id'})
 
+User.hasMany(List, {foreignKey: 'userId', sourceKey: 'id'})
+List.belongsTo(User, {foreignKey: 'userId', targetKey: 'id'})
+
 User.hasMany(Task, {foreignKey: 'userId', sourceKey: 'id'})
 Task.belongsTo(User, {foreignKey: 'userId', targetKey: 'id'})
+
+Project.hasMany(List, {foreignKey: 'projectId', sourceKey: 'id'})
+List.belongsTo(Project, {foreignKey: 'projectId', targetKey: 'id'})
 
 Project.hasMany(Task, {foreignKey: 'projectId', sourceKey: 'id'})
 Task.belongsTo(Project, {foreignKey: 'projectId', targetKey: 'id'})
 
+List.hasMany(Task, {foreignKey: 'listId', sourceKey: 'id'})
+Task.belongsTo(List, {foreignKey: 'listId', targetKey: 'id'})
+
 module.exports = {
   User,
   Project,
+  List,
   Task
 }
