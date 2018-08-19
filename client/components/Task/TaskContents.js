@@ -9,7 +9,7 @@ const TaskContents = props => {
     props.checked ? (
       <del className="d-flex flex-1 text-muted">{children}</del>
     ) : (
-      <div className="d-flex flex-1">
+      <div className="d-flex flex-1" onClick={props.openForm}>
         {children}
       </div>
     )
@@ -18,7 +18,7 @@ const TaskContents = props => {
     <table className="d-flex flex-row py-2 task-item border-bottom">
       <tbody className="flex-1">
         <tr className="d-flex flex-row">
-          <td className="pr-2 pt-1">
+          <td className="px-2 pt-1">
             <div
               className="checkbox rounded-circle border border-secondary"
               onClick={props.toggleCheck}
@@ -28,11 +28,9 @@ const TaskContents = props => {
           </td>
           <td className="d-flex flex-1 text-cursor">
             <CrossOut>
-              <span className="flex-1">{props.title}</span>
+              <span>{props.title}</span>
+              <i className="fas fa-pencil-alt btn btn-outline-secondary border-0" />
             </CrossOut>
-          </td>
-          <td>
-            <i className="fas fa-pencil-alt btn btn-outline-secondary border-0" onClick={props.openForm} />
           </td>
         </tr>
       </tbody>

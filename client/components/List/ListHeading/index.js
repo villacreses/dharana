@@ -1,3 +1,4 @@
 import HeadingContents from './HeadingContents'
-
-export default HeadingContents
+import {EditHeadingForm} from './HeadingForm'
+import {swapper} from '../../FormComponents'
+export default swapper(HeadingContents, EditHeadingForm)

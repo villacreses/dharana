@@ -25,7 +25,7 @@ class TaskForm extends React.Component {
   }
 
   submissionIsValid() {
-    return this.state.title !== this.props.title
+    return this.state.title.length && this.state.title !== this.props.title
   }
 
   render() {

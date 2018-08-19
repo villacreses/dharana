@@ -16,6 +16,7 @@ export default function(Main, Form) {
 
     openForm(evt) {
       evt && evt.preventDefault()
+      console.log('evt.target', evt.target, evt.target.matches('.fa-pencil-alt'))
       this.setState({showForm: true})
     }
 
@@ -34,7 +35,7 @@ export default function(Main, Form) {
               <Form id={id} parentId={parentId} closeForm={this.closeForm} />
             </OutsideListener>
           ) : (
-            <Main id={id} openForm={this.openForm} />
+            <Main {...this.props} openForm={this.openForm} />
           )}
         </React.Fragment>
       )
