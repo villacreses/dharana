@@ -4,7 +4,7 @@ import Project from './Project'
 import Drawer from './Drawer'
 import {Route, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchProjects, getTasksThunk, selectProject} from '../store'
+import {fetchProjects, getTasksThunk, getListsThunk, selectProject} from '../store'
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -13,7 +13,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid d-flex flex-1 pl-0 hide-overflow">
+      <div className="container-fluid d-flex flex-1 px-0 hide-overflow">
         <nav className="nav drawer shadow pt-2 px-3">
           <Drawer />
         </nav>
@@ -29,6 +29,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   ...ownProps,
   initialLoad: async () => {
     await dispatch(fetchProjects())
+    await dispatch(getListsThunk())
     await dispatch(getTasksThunk())
   },
 })

@@ -95,8 +95,8 @@ a.a-no-style {
 }
 
 .task-list-col {
-  max-width: 650px;
-  min-width: 434px;
+  min-width: 560px;
+  max-width: 560px;
   height: 100%;
 }
 
@@ -116,13 +116,13 @@ a.a-no-style {
   font-size: 0.8em;
 }
 
-.fa-ellipsis-v {
+.fa-pencil-alt {
   opacity: 0;
   padding: 0.3em;
 }
 
 .task-item:hover .fa-grip-vertical,
-.task-item:hover .fa-ellipsis-v {
+.task-item:hover .fa-pencil-alt {
   opacity: 1;
 }
 
@@ -138,5 +138,13 @@ a.a-no-style {
 }
 
 .drawer {
-  width: 250px;
+  min-width: 265px;
+}
+
+.hide-overflow {
+  overflow: hidden;
+}
+
+.ox-auto {
+  overflow-x: auto;
 }

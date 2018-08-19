@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Project = require('../db/models/project')
+const {Project, List} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -7,7 +7,8 @@ router.get('/', async (req, res, next) => {
     const userId = req.user.id
     const projects = await Project.findAll({
       where: {userId},
-      attributes: {exclude: ['userId']}
+      attributes: {exclude: ['userId']},
+      include: {model: List, attributes: ['id']}
     })
 
     let payload = {}

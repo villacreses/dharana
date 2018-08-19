@@ -1,7 +1,7 @@
 import TaskContents from './TaskContents'
 import AddTaskLink from './AddTaskLink'
 import {AddTaskForm, EditTaskForm} from './TaskForm'
-import FormSwapper from '../FormSwapper'
+import {swapper} from '../FormComponents/'
 
-export const AddTask = FormSwapper(AddTaskLink, AddTaskForm)
-export default FormSwapper(TaskContents, EditTaskForm)
+export const AddTask = swapper(AddTaskLink, AddTaskForm)
+export default swapper(TaskContents, EditTaskForm)

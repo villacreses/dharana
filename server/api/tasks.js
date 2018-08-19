@@ -22,10 +22,9 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const userId = req.user.id
-    const {title} = req.body
 
     const task = await Task.build({
-      title,
+      ...req.body,
       userId
     }).save()
 
