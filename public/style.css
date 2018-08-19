@@ -116,13 +116,13 @@ a.a-no-style {
   font-size: 0.8em;
 }
 
-.fa-ellipsis-v {
+.fa-pencil-alt {
   opacity: 0;
   padding: 0.3em;
 }
 
 .task-item:hover .fa-grip-vertical,
-.task-item:hover .fa-ellipsis-v {
+.task-item:hover .fa-pencil-alt {
   opacity: 1;
 }
 

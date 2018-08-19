@@ -4,10 +4,16 @@ import {addListToProject} from './project'
 // ACTION TYPES
 const GET_LISTS = 'GET_LISTS'
 const CREATE_NEW_LIST = 'CREATE_NEW_LIST'
+const ADD_TASK_TO_LIST = 'ADD_TASK_TO_LIST'
 
 // ACTION CREATORS
 export const getLists = lists => ({type: GET_LISTS, lists})
 export const createNewList = list => ({type: CREATE_NEW_LIST, list})
+export const addTaskToList = task => ({
+  type: ADD_TASK_TO_LIST,
+  id: task.id,
+  listId: task.listId
+})
 
 // THUNK CREATORS
 export const getListsThunk = () => async dispatch => {
@@ -30,7 +36,6 @@ export const createNewListThunk = listInfo => async dispatch => {
 
     const {id, projectId} = res.data
     dispatch(addListToProject({id, projectId}))
-
   } catch (err) {
     console.error(err)
   }
@@ -43,7 +48,21 @@ export default function(lists = {}, action) {
     case CREATE_NEW_LIST:
       return {
         ...lists,
-        [action.list.id]: action.list
+        [action.list.id]: {
+          ...action.list,
+          tasks: []
+        }
+      }
+    case ADD_TASK_TO_LIST:
+      return {
+        ...lists,
+        [action.listId]: {
+          ...lists[action.listId],
+          tasks: [
+            ...lists[action.listId].tasks,
+            {id: action.id}
+          ]
+        }
       }
     default:
       return lists

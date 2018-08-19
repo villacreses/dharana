@@ -25,13 +25,13 @@ export default function(Main, Form) {
     }
 
     render() {
-      const id = this.props.id || null
+      const {id, parentId} = this.props
 
       return (
         <React.Fragment>
           {this.state.showForm ? (
             <OutsideListener handleClick={this.closeForm}>
-              <Form id={id} closeForm={this.closeForm} />
+              <Form id={id} parentId={parentId} closeForm={this.closeForm} />
             </OutsideListener>
           ) : (
             <Main id={id} openForm={this.openForm} />
@@ -41,5 +41,3 @@ export default function(Main, Form) {
     }
   }
 }
-
-export {default as StandardForm} from './StandardForm'

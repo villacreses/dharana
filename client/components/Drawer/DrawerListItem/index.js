@@ -1,7 +1,7 @@
 import ListItemContents from './ListItemContents'
 import AddProjectLink from './AddProjectLink'
 import {AddProjectForm, EditProjectForm} from './ListItemForm'
-import FormSwapper from '../../FormSwapper'
+import {swapper} from '../../FormComponents'
 
-export const AddProject = FormSwapper(AddProjectLink, AddProjectForm)
-export default FormSwapper(ListItemContents, EditProjectForm)
+export const AddProject = swapper(AddProjectLink, AddProjectForm)
+export default swapper(ListItemContents, EditProjectForm)

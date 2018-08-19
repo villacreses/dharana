@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {addTaskToList} from './list'
 
 // ACTION TYPES
 const GET_TASKS = 'GET_TASKS'
@@ -34,14 +35,14 @@ export const toggleTaskThunk = id => async dispatch => {
 export const createNewTaskThunk = taskInfo => async dispatch => {
   try {
     const res = await axios.post('/api/tasks', taskInfo)
-    dispatch(createNewTask(res.data))
+    await dispatch(createNewTask(res.data))
+    dispatch(addTaskToList(res.data))
   } catch (err) {
     console.error(err)
   }
 }
 
 export const updateTaskThunk = (taskId, updates) => async dispatch => {
-  console.log(taskId, updates)
   try {
     const res = await axios.put(`/api/tasks/${taskId}`, updates)
     dispatch(updateTask(res.data))

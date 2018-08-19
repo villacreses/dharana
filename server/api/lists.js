@@ -26,7 +26,7 @@ router.post('/', async (req, res, next) => {
     const userId = req.user.id
     const title = req.body.title || 'List'
 
-    const list = await List.build({...req.body, title}).save()
+    const list = await List.build({...req.body, title, userId}).save()
     res.status(201).json(list)
   } catch (err) {
     next(err)
