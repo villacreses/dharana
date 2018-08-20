@@ -21,7 +21,7 @@ export const addListToProject = list => ({
 export const fetchProjects = () => async dispatch => {
   try {
     const res = await axios.get('/api/projects')
-    dispatch(getProjects(res.data || []))
+    dispatch(getProjects(res.data))
   } catch (err) {
     console.error(err)
   }

@@ -28,9 +28,11 @@ class Dashboard extends React.Component {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   ...ownProps,
   initialLoad: async () => {
-    await dispatch(fetchProjects())
-    await dispatch(getListsThunk())
-    await dispatch(getTasksThunk())
+    await Promise.all([
+      dispatch(fetchProjects()),
+      dispatch(getListsThunk()),
+      dispatch(getTasksThunk())
+    ])
   },
 })
 
