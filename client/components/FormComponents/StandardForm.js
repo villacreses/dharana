@@ -23,3 +23,17 @@ export default function () {
     </Form>
   )
 }
+
+export function StandardFormAbbr () {
+  return (
+    <Form onSubmit={this.handleSubmit}>
+      <InputGroup>
+        <Input
+          name="title"
+          value={this.state.title}
+          onChange={this.handleInput}
+        />
+      </InputGroup>
+    </Form>
+  )
+}

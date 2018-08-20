@@ -3,50 +3,43 @@ import {connect} from 'react-redux'
 import {
   handleInput,
   handleSubmit,
-  Form,
-  InputGroup,
-  Input
+  StandardForm,
+  StandardFormAbbr
 } from '../../FormComponents'
-import {updateListThunk} from '../../../store'
+import {updateListThunk, createNewListThunk} from '../../../store'
 
-class HeadingForm extends React.Component {
-  constructor(props) {
-    super(props)
+function HeadingForm(Form) {
+  return class extends React.Component {
+    constructor(props) {
+      super(props)
 
-    this.state = {
-      title: this.props.title
+      this.state = {
+        title: this.props.title
+      }
+
+      this.Form = Form.bind(this)
+      this.handleInput = handleInput.bind(this)
+      this.handleSubmit = handleSubmit.bind(this)
+      this.payload = this.payload.bind(this)
+      this.submissionIsValid = this.submissionIsValid.bind(this)
     }
 
-    this.handleInput = handleInput.bind(this)
-    this.handleSubmit = handleSubmit.bind(this)
-    this.payload = this.payload.bind(this)
-    this.submissionIsValid = this.submissionIsValid.bind(this)
-  }
-
-  payload() {
-    const {parentId} = this.props
-    return {
-      ...this.state,
-      ...parentId
+    payload() {
+      const {parentId} = this.props
+      return {
+        ...this.state,
+        ...parentId
+      }
     }
-  }
 
-  submissionIsValid() {
-    return this.state.title.length && this.state.title !== this.props.title
-  }
+    submissionIsValid() {
+      return this.state.title.length && this.state.title !== this.props.title
+    }
 
-  render() {
-    return (
-      <Form onSubmit={this.handleSubmit}>
-        <InputGroup>
-          <Input
-            name="title"
-            value={this.state.title}
-            onChange={this.handleInput}
-          />
-        </InputGroup>
-      </Form>
-    )
+    render() {
+      const {Form} = this
+      return <Form  />
+    }
   }
 }
 
@@ -60,6 +53,16 @@ const mapDispatchEdit = (dispatch, ownProps) => ({
   submitUpdates: updates => dispatch(updateListThunk(ownProps.id, updates))
 })
 
+const mapDispatchAdd = (dispatch, ownProps) => ({
+  ...ownProps,
+  title: '',
+  submitUpdates: updates => dispatch(createNewListThunk(updates))
+})
+
 export const EditHeadingForm = connect(mapStateEdit, mapDispatchEdit)(
-  HeadingForm
+  HeadingForm(StandardFormAbbr)
+)
+
+export const AddListForm = connect(null, mapDispatchAdd)(
+  HeadingForm(StandardForm)
 )

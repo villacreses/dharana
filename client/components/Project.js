@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {selectProject} from '../store'
-import List from './List'
+import List, {AddList} from './List'
 
 class Project extends React.Component {
   componentDidUpdate () {
@@ -22,6 +22,9 @@ class Project extends React.Component {
             </div>
             <div className="d-flex flex-row flex-1 ox-auto">
               {lists && lists.map(list => <List key={list.id} id={list.id} parentId={parentId}/>)}
+              <div>
+                <AddList parentId={parentId} />
+              </div>
             </div>
           </React.Fragment>
         )}
