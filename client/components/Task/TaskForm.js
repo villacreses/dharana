@@ -1,36 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {updateTaskThunk, createNewTaskThunk} from '../../store'
-import {handleInput, handleSubmit, StandardForm} from '../FormComponents'
+import {Form} from '../FormComponents'
 
-class TaskForm extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      title: this.props.title,
-    }
-
-    this.handleInput = handleInput.bind(this)
-    this.handleSubmit = handleSubmit.bind(this)
-    this.StandardForm = StandardForm.bind(this)
-  }
-
-  payload() {
-    const {parentId} = this.props
-    return {
-      ...this.state,
-      ...parentId
-    }
-  }
-
-  submissionIsValid() {
-    return this.state.title.length && this.state.title !== this.props.title
-  }
-
+class TaskForm extends Form {
   render() {
-    const {StandardForm} = this
-    return <StandardForm />
+    return (
+      <Form.Form onSubmit={this.handleSubmit}>
+        <Form.StandardInput
+          name="title"
+          value={this.state.title}
+          onChange={this.handleInput}
+        />
+        <Form.StandardButtons onCancel={this.props.closeForm} />
+      </Form.Form>
+    )
   }
 }
 

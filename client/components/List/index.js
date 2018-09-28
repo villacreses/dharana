@@ -5,6 +5,7 @@ import ListHeading from './ListHeading'
 
 const ListContents = props => {
   const taskParentId = {listId: props.id, ...props.parentId}
+  console.log(AddTask)
   return (
     <div className="task-list-col flex-1 p-3">
       <div className="border rounded task-list shadow full-height paper">
@@ -23,6 +24,7 @@ const ListContents = props => {
     </div>
   )
 }
+
 
 const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
