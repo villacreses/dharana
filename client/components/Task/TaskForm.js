@@ -4,40 +4,15 @@ import {updateTaskThunk, createNewTaskThunk} from '../../store'
 import {Form} from '../FormComponents'
 
 class TaskForm extends Form {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      title: this.props.title,
-    }
-
-    this.payload = this.payload.bind(this)
-    this.submissionIsValid = this.submissionIsValid.bind(this)
-  }
-
-  payload() {
-    const {parentId} = this.props
-    return {
-      ...this.state,
-      ...parentId
-    }
-  }
-
-  submissionIsValid() {
-    return this.state.title.length && this.state.title !== this.props.title
-  }
-
   render() {
     return (
       <Form.Form onSubmit={this.handleSubmit}>
-        <Form.StandardInput 
+        <Form.StandardInput
           name="title"
           value={this.state.title}
           onChange={this.handleInput}
         />
-        <Form.StandardButtons
-          onCancel={this.props.closeForm}
-        />
+        <Form.StandardButtons onCancel={this.props.closeForm} />
       </Form.Form>
     )
   }

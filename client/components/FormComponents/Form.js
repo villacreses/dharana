@@ -6,6 +6,10 @@ export default class Form extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      title: this.props.title || 'title'
+    }
+
     this.handleInput = (evt) => {
       const {name, value} = evt.target
       this.setState({[name]: value})
@@ -18,6 +22,16 @@ export default class Form extends Component {
         submitUpdates(this.payload())
       }
       closeForm()
+    }
+
+    this.payload = () => ({
+      ...this.state,
+      ...this.props.parentId
+    })
+
+    this.submissionIsValid = () => {
+      const {title} = this.state
+      return title.length && title !== this.props.title
     }
   }
 
