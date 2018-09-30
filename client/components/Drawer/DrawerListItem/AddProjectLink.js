@@ -1,12 +1,10 @@
 import React from 'react'
+import AddItemLink from '../../AddItemLink'
 
-const AddProjectLink = ({openForm}) => {
+const AddProjectLink = props => {
   return (
     <div className="btn btn-sm">
-      <a href="" onClick={openForm}>
-        <i className="fas fa-plus px-2" /> 
-        <span>Add Project</span>
-      </a>
+      <AddItemLink text="Add Project" {...props} />
     </div>
   )
 }

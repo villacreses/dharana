@@ -42,9 +42,10 @@ export const createNewTaskThunk = taskInfo => async dispatch => {
   }
 }
 
-export const updateTaskThunk = (taskId, updates) => async dispatch => {
+export const updateTaskThunk = updates => async dispatch => {
   try {
-    const res = await axios.put(`/api/tasks/${taskId}`, updates)
+    const {id} = updates
+    const res = await axios.put(`/api/tasks/${id}`, updates)
     dispatch(updateTask(res.data))
   } catch (err) {
     console.error(err)
