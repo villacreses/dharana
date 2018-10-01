@@ -7,7 +7,7 @@ export default class Form extends Component {
     super(props)
 
     this.state = {
-      title: this.props.title || 'title'
+      title: this.props.title || ''
     }
 
     this.handleInput = (evt) => {
@@ -24,10 +24,14 @@ export default class Form extends Component {
       closeForm()
     }
 
-    this.payload = () => ({
-      ...this.state,
-      ...this.props.parentId
-    })
+    this.payload = () => {
+      const {id, parentId} = this.props
+      return {
+        ...this.state,
+        ...parentId,
+        id
+      }
+    }
 
     this.submissionIsValid = () => {
       const {title} = this.state

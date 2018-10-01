@@ -11,10 +11,10 @@ const ADD_LIST_TO_PROJECT = 'ADD_LIST_TO_PROJECT'
 // Action creators
 export const getProjects = projects => ({type: GET_PROJECTS, projects})
 export const postNewProject = project => ({type: POST_NEW_PROJECT, project})
-export const addListToProject = list => ({
+export const addListToProject = ({id, projectId}) => ({
   type: ADD_LIST_TO_PROJECT,
-  id: list.id,
-  projectId: list.projectId,
+  id,
+  projectId
 })
 
 // THUNK CREATORS
@@ -27,11 +27,13 @@ export const fetchProjects = () => async dispatch => {
   }
 }
 
-export const createNewProject = title => async dispatch => {
+export const createNewProject = ({title}) => async dispatch => {
   try {
     const res = await axios.post('/api/projects', {title})
     await dispatch(postNewProject(res.data))
-    await dispatch(createNewListThunk({title: 'list 1', projectId: res.data.id}))
+    await dispatch(
+      createNewListThunk({title: 'list 1', projectId: res.data.id})
+    )
 
     history.push(`/d/project#${res.data.id}`)
     dispatch(selectProject(res.data.id))
@@ -58,10 +60,7 @@ export default function(projects = {}, action) {
         ...projects,
         [action.projectId]: {
           ...projects[action.projectId],
-          lists: [
-            ...projects[action.projectId].lists,
-            {id: action.id}
-          ]
+          lists: [...projects[action.projectId].lists, {id: action.id}]
         }
       }
     default:

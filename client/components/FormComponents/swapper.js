@@ -16,7 +16,6 @@ export default function(Main, Form) {
 
     openForm(evt) {
       evt && evt.preventDefault()
-      console.log('evt.target', evt.target, evt.target.matches('.fa-pencil-alt'))
       this.setState({showForm: true})
     }
 
