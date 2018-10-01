@@ -1,5 +1,8 @@
 import React from 'react'
+import {swapper} from '../FormComponents'
+import ItemContainer from '../ItemContainer'
 import AddItemLink from '../AddItemLink'
+import {AddTaskForm} from './TaskForm'
 
 const AddTaskLink = props => {
   return (
@@ -9,4 +12,4 @@ const AddTaskLink = props => {
   )
 }
 
-export default AddTaskLink
+export default swapper(AddTaskLink, AddTaskForm)
